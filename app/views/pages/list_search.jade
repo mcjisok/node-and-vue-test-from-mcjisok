@@ -1,0 +1,17 @@
+each item in products
+	tr(class="item-id-#{item._id}")
+		td(style="width:35%") #{item.product_title}
+		td #{item.product_price}.00元
+		td #{item.product_stock}#{item.product_unit}
+		td #{item.cname}
+		td #{item.bname}
+		td #{item.lname}
+		td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+		td #{item.pv}
+		td
+			a.layui-btn.layui-btn-sm(target="_blank",href="/movie/#{item._id}")
+				|<i class="layui-icon">&#xe64c;</i>查看
+			a.layui-btn.layui-btn-sm.layui-btn-normal(target="_blank",href="/admin/movie/update/#{item._id}")
+				|<i class="layui-icon">&#xe642;</i>编辑
+			button.layui-btn.layui-btn-sm.layui-btn-danger.del(type="button",date-id="#{item._id}")
+				|<i class="layui-icon">&#xe640;</i>删除

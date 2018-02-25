@@ -1,0 +1,16 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin-top:100px;")
+		layui-row
+			form.layui-form(method="post",action="/admin/label")
+				//-input(type="hidden",name="movie[_id]",value="#{movie._id}")
+				.layui-form-item
+					lable.layui-form-label(for="inputLabel") 商品标签
+					.layui-input-block
+						input#inputLabel.layui-input(type="text",name="label[name]",required="required",lay-verify="required",value=label.name)				
+				.layui-form-item
+					.layui-input-block
+						button.btn.layui-btn(type="submit",lay-filter="formDemo") 录入
+	script.
+		$('dd:contains(标签管理)').addClass('layui-this');

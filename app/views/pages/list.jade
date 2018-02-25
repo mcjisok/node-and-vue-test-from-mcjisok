@@ -1,0 +1,71 @@
+extends ../backstage_layou
+
+block content
+
+	.layui-body(style="margin-top:100px; margin-left:20px; margin:80px 20px 0px 20px;")
+		form.searchFrom.layui-form
+			blockquote.layui-elem-quote.news_search
+				.layui-inline
+					a.layui-btn.layui-btn-normal(href="/admin/movie/new") 发布新商品
+				//-.layui-inline
+					.layui-input-inline
+						input.layui-input.search_input(type="text",placeholder="请输入关键词",value="",name="keyword")		
+				.layui-inline
+					select#cate(name="category")
+						option(value="") 选择分类
+						each item in catetories
+							option(value="#{item._id}") #{item.name}
+				.layui-inline
+					select#label(name="label")
+						option(value="") 选择标签
+						each item in labels
+							option(value="#{item._id}") #{item.name}
+				.layui-inline
+					select#brand(name="brand")
+						option(value="") 选择品牌
+						each item in brands
+							option(value="#{item._id}") #{item.name}
+				.layui-inline
+					a.layui-btn.search_btn
+						|<i class="layui-icon">&#xe615;</i>查询
+				.layui-inline
+					button.layui-btn.layui-btn-normal(type="reset")
+						|<i class="layui-icon">&#x1002;</i>重置
+		table.layui-table
+			thead
+				tr
+					th 标题
+					th 价格
+					th 库存
+					th 分类
+					th 品牌
+					th 标签
+					th 发布时间
+					th PV
+					th 操作
+					//th 更新
+					//th 删除
+				tbody
+					each item in products
+						tr(class="item-id-#{item._id}")
+							td(style="width:35%") #{item.product_title}
+							td #{item.product_price}.00元
+							td #{item.product_stock}#{item.product_unit}
+							td #{item.parentcate_name} - #{item.cname}
+							td #{item.bname}
+							td #{item.lname}
+							td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+							td #{item.pv}
+							td
+								a.layui-btn.layui-btn-sm(target="_blank",href="/movie/#{item._id}")
+									|<i class="layui-icon">&#xe64c;</i>查看
+								a.layui-btn.layui-btn-sm.layui-btn-normal(target="_blank",href="/admin/movie/update/#{item._id}")
+									|<i class="layui-icon">&#xe642;</i>编辑
+								button.layui-btn.layui-btn-sm.layui-btn-danger.del(type="button",date-id="#{item._id}")
+									|<i class="layui-icon">&#xe640;</i>删除
+	br
+	br
+	br
+	script(src="/js/admin.js")
+	script.
+		$('dd:contains(商品管理)').addClass('layui-this');

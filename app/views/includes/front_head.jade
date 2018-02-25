@@ -1,0 +1,101 @@
+meta(name="viewport",content="user-scalable=no")
+script.
+	$(function(){
+		$(".lubo").lubo({
+		});
+		var thisTime;
+		//鼠标移动到title 显示下方列表
+		$('.cat_title').mouseenter(function(even){
+			$('.cat_wrap .cat_list').css('min-height','420px').show(200);
+		});
+		//鼠标离开title，隐藏下方列表
+		$('.cat_header').mouseleave(function(even){
+			$('.cat_wrap .cat_list').hide(200);
+			//- $('.cat_subcont').removeClass('active')
+		})
+
+
+	    //鼠标离开左侧内容栏
+	    $('.cat_wrap .cat_list .float').mouseleave(function(even){
+	        thisTime = setTimeout(thisMouseOut,200);
+	    });
+	    //鼠标点击左侧内容栏   滑动出弹层
+	    $('.cat_wrap .cat_list .float').mouseenter(function(){
+	        $(this).addClass("active").siblings().removeClass("active");
+	        clearTimeout(thisTime);
+	        var thisUB = $('.cat_wrap .cat_list .float').index($(this));
+	        if($.trim($('.cat_subcont .cat_sublist').eq(thisUB).html()) != ""){
+	            $('.cat_subcont').addClass('active');
+	            $('.cat_sublist').hide();
+	            $('.cat_sublist').eq(thisUB).show();
+	        }else{
+	            $('.cat_subcont').removeClass('active');
+	        }
+	    });
+	    //函数——执行鼠标离开左侧内容栏的动作
+	    function thisMouseOut(){
+	        $('.cat_subcont').removeClass('active');
+	        $('.cat_wrap .cat_list .float').removeClass('active');
+	    }
+	    $('.cat_subcont').mouseenter(function(){
+	        clearTimeout(thisTime);
+	        $('.cat_subcont').addClass('active');
+	    });
+	    $('.cat_subcont').mouseleave(function(){
+	        $('.cat_subcont').removeClass('active');
+	        $('.cat_wrap .cat_list .float').removeClass('active');
+	    });
+	})
+#head
+	.head_top
+		.head_welcome
+			if user
+				p
+					span 欢迎您，#{user.name}
+					span &nbsp;|&nbsp;
+					a(href="/admin/movie/personal_list") 我的商品中心&nbsp;|&nbsp;
+					a(href="/user/logout") 登出
+			else
+				p
+					span 欢迎来到土豆批发商城 &nbsp;&nbsp;
+					a(href="/signup",data-toggle="modal",data-target="#signupModal") 注册
+					span &nbsp;|&nbsp;
+					a(href="/signin",data-toggle="modal",data-target="#signinModal") 登录
+	.head_con
+		.hd_logo
+		.hd_search
+			form(method='GET',action='/results')
+				input.search(type="text",placeholder="请输入关键词",name="q")
+				input.submit(type="submit",value="搜索")
+#nav
+	ul.w
+		li.active
+			a(href="/") 首页
+		li
+			a(href="/admin/userlist") 用户列表
+		li
+			a(href="/admin/movie/new") 新增商品
+		li
+			a(href="/admin/movie/list") 后台商品列表
+.w.clearfix(style="position:relative")
+	.cat_wrap
+		.cat_header
+			h3.cat_title 全部商品分类
+			.cat_list
+				each cat in catetories
+					.float.for1
+						ul.clearfix
+							li
+								a(href="/results?cat=#{cat._id}") #{cat.name}
+		.cat_subcont
+			each cat in catetories
+				.cat_sublist
+					if cat.products && cat.products.length > 0
+						each item in cat.products						
+							.fore1
+								.fore_list
+									h3
+										a(href="#") #{cat.name}
+									ul.clearfix
+										li
+											a(href="#") #{item.product_title}

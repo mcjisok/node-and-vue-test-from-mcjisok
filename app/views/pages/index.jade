@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+	script.
+		$(document).ready(function(){ 
+			$('#myCarousel').carousel({interval:3000});
+			$('#myCarousel').carousel({pause});
+		}); 
+
+	.container(style="margin-bottom:30px; padding-letf:0; padding-right:0")
+		.row(style="margin-bottom:30px")
+			#myCarousel.carousel.slide
+				ol.carousel-indicators
+					li.active(data-target="#myCarousel",data-slide-to="0")
+					li(data-target="#myCarousel",data-slide-to="1")
+					li(data-target="#myCarousel",data-slide-to="2")
+				.carousel-inner
+					.item.active
+						img(src="images/lunbo1.png",alt="ceshi")
+					.item
+						img(src="images/lunbo1.png",alt="ceshi")
+					.item
+						img(src="images/lunbo1.png",alt="ceshi")
+				a.carousel-control.left(href="#myCarousel",data-slide="prev") 1
+				a.carousel-control.right(href="#myCarousel",data-slide="next") 1
+		each cat in catetories
+			.panel.panel-primary
+				.panel-heading
+					h3 #{cat.name}
+				.panel-body
+					if cat.products && cat.products.length > 0
+						each item in cat.products
+							.col-md-3.col-xs-6
+								.thumbnail.text-center
+									a(href="/movie/#{item._id}")
+										img(src="#{item.product_poster}",alt="#{item.product_title}")
+									.caption.text-center
+										h3 #{item.product_title}
+										p: a.btn.btn-primary(href="/movie/#{item._id}",role="button") 观看预告片
+	//-.container(style="margin-bottom:60px")
+		.row
+			.panel.panel-default.col-md-4(style="margin-left:30px;")
+				.panel-body 
+					p.label.label-success 会员列表
+					each user in users
+						.media
+							a.pull-left(href="#")
+								img.media-object.img-circle(src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+", style="width: 64px; height: 64px;")
+							.media-body
+								h4.meida-heading #{user.name}
+								p 个性签名个性签名个性签名个性签名

@@ -1,0 +1,120 @@
+extends ../layout_bak
+
+block content
+	link(href="/css/style.css",rel="stylesheet")
+	script(src="/js/lubotu.js")
+	
+	
+	.lubo
+		ul.lubo_box
+			li(style=" opacity: 1;filter:alpha(opacity=100);")
+				a(href="" style="background:url(images/1.jpeg) center top no-repeat")
+			li
+				a(href="" style="background:url(images/2.jpeg) center top no-repeat")
+			li
+				a(href="" style="background:url(images/3.jpeg) center top no-repeat")
+			li
+				a(href="" style="background:url(images/4.jpeg) center top no-repeat")
+			li
+				a(href="" style="background:url(images/5.jpeg) center top no-repeat")
+	.hotSale
+		each cat in catetories
+			.hotTitle
+				h3 #{cat.name}	
+			.hotSale_prd
+				if cat.products && cat.products.length > 0
+						each item in cat.products
+							.hotSale_prd_box
+								.gds_img
+									a(href="/movie/#{item._id}",target="_blank")
+										div.imgbx
+											img(src="#{item.product_poster[0]}",alt="#{item.product_title}",width="150")
+										.saled 已售
+											span #{item.product_salesvolume}件
+								.gds_msg
+									a(href="/movie/#{item._id}")
+										p.prd_title #{item.product_title}
+										span.prd_price ￥
+											em #{item.product_price}
+										span.prd_market_price ￥
+											em #{item.product_price}
+										.join
+											a(href="#") 加入购物车	
+	.sale_f
+		.sale_floor
+			.cage_title
+				h2 1F 奶粉
+			.warp_left
+				.warp_left_cage
+					a(href="#") 奶粉
+					a(href="#") 进口奶粉
+					a(href="#") 成人奶粉
+					a(href="#") 羊奶粉
+					a(href="#") 其他奶粉
+					a(href="#") 国产奶粉
+				.warp_left_img
+					a(href="#")
+						img(src="images/warp_left1.jpg")
+			.warp_right
+				.sale_floor_prd
+					.floor_prd_img
+						a(href="#")
+							img(src="images/fllor_prd (1).jpg",width="170")
+					.floor_prd_title
+						a(href="#") 商品标题商品标题商品标题
+					.floor_prd_price
+						p ￥
+							span 99.0
+
+
+
+
+
+
+	//- script.
+	//- 	$(function(){
+	//- 		$(".lubo").lubo({
+	//- 		});
+	//- 		var thisTime;
+	//- 		//鼠标移动到title 显示下方列表
+	//- 		$('.cat_title').mouseenter(function(even){
+	//- 			$('.cat_wrap .cat_list').css('min-height','420px').show(200);
+	//- 		});
+	//- 		//鼠标离开title，隐藏下方列表
+	//- 		$('.cat_header').mouseleave(function(even){
+	//- 			$('.cat_wrap .cat_list').hide(200);
+	//- 			//- $('.cat_subcont').removeClass('active')
+	//- 		})
+
+
+	//- 	    //鼠标离开左侧内容栏
+	//- 	    $('.cat_wrap .cat_list .float').mouseleave(function(even){
+	//- 	        thisTime = setTimeout(thisMouseOut,200);
+	//- 	    });
+	//- 	    //鼠标点击左侧内容栏   滑动出弹层
+	//- 	    $('.cat_wrap .cat_list .float').mouseenter(function(){
+	//- 	        $(this).addClass("active").siblings().removeClass("active");
+	//- 	        clearTimeout(thisTime);
+	//- 	        var thisUB = $('.cat_wrap .cat_list .float').index($(this));
+	//- 	        if($.trim($('.cat_subcont .cat_sublist').eq(thisUB).html()) != ""){
+	//- 	            $('.cat_subcont').addClass('active');
+	//- 	            $('.cat_sublist').hide();
+	//- 	            $('.cat_sublist').eq(thisUB).show();
+	//- 	        }else{
+	//- 	            $('.cat_subcont').removeClass('active');
+	//- 	        }
+	//- 	    });
+	//- 	    //函数——执行鼠标离开左侧内容栏的动作
+	//- 	    function thisMouseOut(){
+	//- 	        $('.cat_subcont').removeClass('active');
+	//- 	        $('.cat_wrap .cat_list .float').removeClass('active');
+	//- 	    }
+	//- 	    $('.cat_subcont').mouseenter(function(){
+	//- 	        clearTimeout(thisTime);
+	//- 	        $('.cat_subcont').addClass('active');
+	//- 	    });
+	//- 	    $('.cat_subcont').mouseleave(function(){
+	//- 	        $('.cat_subcont').removeClass('active');
+	//- 	        $('.cat_wrap .cat_list .float').removeClass('active');
+	//- 	    });
+	//- 	})

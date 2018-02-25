@@ -1,0 +1,26 @@
+doctype
+head
+	link(href="/layui/css/layui.css",rel="stylesheet")
+	link(href="/css/sign.css",rel="stylesheet")
+	script(src="/layui/layui.js")
+	script(src="/libs/jquery/dist/jquery.min.js")
+	script(src="/js/login.js")
+	title 注册页面
+	#sign
+		form#signup.layui-form.layui-form-pane(method="POST")
+			.layui-form-item
+				label.layui-form-label(for="signupName") 用户名
+				.layui-input-block
+					input#signupName.layui-input(name="username",type="text",placeholder="请输入账号",lay-verify="username",required="required",autocomplete="off")
+			.layui-form-item
+				label.layui-form-label(for="signupPassword") 密码
+				.layui-input-block
+					input#signupPassword.layui-input(name="password",type="password",placeholder="请输入密码",lay-verify="pass",required="required",autocomplete="new-password")
+			//-.layui-form-item
+				label.layui-form-label(for="signupEmail") 邮箱
+				.layui-input-block
+					input#signupEmail.layui-input(type="email",placeholder="请输入邮箱",required="required",lay-verify="email")
+			.layui-input-block
+				button#signup.btn.layui-btn(type="submit") 注册
+				button.btn.layui-btn(type="reset") 重置				
+				a.layui-btn.layui-btn-normal(href='/signin') 已有账号

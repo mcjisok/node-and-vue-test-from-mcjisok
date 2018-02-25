@@ -1,0 +1,37 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin:60px 0 50px 0 ;")
+		input#productid(type="hidden",value="#{productid}")
+		fieldset.layui-elem-field.layui-field-title(style="margin-top:30px;")
+			legend 上传商品主图
+		.layui-upload#main(style="margin-left:20px;") 
+			button#mainimages.layui-btn(type="button") 上传主图
+			//blockquote.layui-elem-quote.layui-quote-nm(style="margin-top:10px") 预览图
+			.layui-upload-list#pre_mainimages
+				if product.product_poster.length > 0
+					each item in product.product_poster
+						div.imglist1(style="")
+							img(src="#{item}",alt="#{item}",width="100%",class="layui-upload-img")
+							a(href="javascript:;")
+								i.layui-icon.main-i(style="font-size: 30px; color: #ccc; line-height:35px;",imgurl="#{item}") &#xe640;
+				.mainimgMK
+				div#clearbox(style="clear:both")
+		fieldset.layui-elem-field.layui-field-title(style="margin-top:30px;")
+			legend 上传多张详情图
+		.layui-upload#detail(style="margin-left:20px;") 
+			button#upload_detailimg.layui-btn(type="button") 上传详情图
+			//blockquote.layui-elem-quote.layui-quote-nm(style="margin-top:10px") 预览图
+			.layui-upload-list#pre_detailimg
+				if product.product_detailimg.length > 0
+					each item in product.product_detailimg
+						div.imglist(style="")
+							img(src="#{item}",alt="#{item}",width="100%",class="layui-upload-img")
+							a(href="javascript:;")
+								i.layui-icon.detail-i(style="font-size: 30px; color: #ccc; line-height:35px;",imgurl="#{item}") &#xe640;
+				.detailMK
+				div#clearbox(style="clear:both")
+			input#detailimgurl(type="hidden",name="product[product_detailimg]")
+			a.layui-btn.layui-btn-normal(href="/movie/#{product.id}") 发布商品
+	script(src="/js/admin.js")
+	link(href="/css/admin.css",rel="stylesheet")

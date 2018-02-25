@@ -1,0 +1,60 @@
+meta(name="viewport",content="user-scalable=no")
+
+.layui-layout.layui-layout-admin
+	.layui-header
+		.layui-logo tudou后台布局
+		ul.layui-nav.layui-layout-left
+			li.layui-nav-item
+				a(href="#") 控制台
+			li.layui-nav-item
+				a(href="/admin/movie/list") 商品管理
+			li.layui-nav-item
+				a(href="/admin/userlist") 用户
+			li.layui-nav-item
+				a(href="javascript:;") 其他
+				dl.layui-nav-child
+					dd
+						a(href="#") 邮件管理
+					dd
+						a(href="#") 邮件管理
+			li.layui-nav-item
+				a(href="/") 前台首页
+		ul.layui-nav.layui-layout-right
+			li.layui-nav-item
+				a(href="javascript:;")
+					img.layui-nav-img(src="/images/tx.jpg")
+				dl.layui-nav-child
+					dd
+						a(href="") 基本资料
+					dd
+						a(href="") 安全设置
+			li.layui-nav-item
+				a(href="/user/logout") 退出
+	.layui-side.layui-bg-black
+		.layui-side-scroll
+			ul.layui-nav.layui-nav-tree(lay-filter="test")
+				li.layui-nav-item.layui-nav-itemed
+					a(href="javascript:;") 商品管理
+					dl.layui-nav-child
+						dd
+							a(href="/admin/movie/list") 商品管理
+						dd
+							a(href="/admin/movie/personal_list") 我的商品
+						dd
+							a(href="/admin/catetory/list") 分类管理
+						dd
+							a(href="/admin/label/list") 标签管理
+						dd
+							a(href="/admin/brand/list") 品牌管理
+				li.layui-nav-item.layui-nav-itemed
+					a(href="javascript:;") 所有商品
+					dl.layui-nav-child
+						dd
+							a(href="javascript:;") 列表一
+						dd
+							a(href="javascript:;") 列表二
+						dd
+							a(href="javascript:;") 列表三
+script(src="/js/layui_head.js")
+script(src="/js/layui_body.js")
+

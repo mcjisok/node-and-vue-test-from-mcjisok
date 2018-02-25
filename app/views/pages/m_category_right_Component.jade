@@ -1,0 +1,16 @@
+//- 右侧商品类容和banner
+.cate_right
+    .cate_right_box
+        a.banner(href="#")
+            img(src="/images/banner (1).jpg", alt="")
+        each item in childcates
+            .hot-category
+                h3 #{item.name}
+                ul.clearfix
+                    each product in item.products
+                        li
+                            a(href="#")
+                                img(src="#{product.product_poster}", alt="")
+                                //- | #{product.product_title}                        
+
+    

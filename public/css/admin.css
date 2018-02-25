@@ -1,0 +1,23 @@
+/*商品上传样式表*/
+#pre_detailimg{
+	background-color: #fff;
+}
+
+.imglist{
+	padding:10px 10px 5px 10px;
+	border:1px solid #393D49;
+	background-color: #fff;
+	float:left; 
+	margin:5px;	
+	width:15%;
+}
+
+
+.imglist1{
+	padding:10px 10px 5px 10px;
+	border:1px solid #393D49;
+	background-color: #fff;
+	float:left; 
+	margin:5px;	
+	width:15%;
+}

@@ -1,0 +1,14 @@
+if catetories.length!=''
+.layui-inline
+	select#childcate_admin.layui-form-danger(name="product[childcate]",required="",lay-verify="required")
+		option(value="") 选择二级分类
+		each childcate in catetories
+			option(value="#{childcate._id}") #{childcate.name}
+	.layui-unselect.layui-form-select
+		.layui-select-title
+			input(type="text",placeholder="选择二级分类",value="",readonly="",class="layui-input layui-unselect")
+			i.layui-edge
+		dl.layui-anim.layui-anim-upbit
+			dd.layui-select-tips(lay-value="") 选择二级分类
+			each childcate in catetories
+				dd(lay-value="#{childcate._id}") #{childcate.name}

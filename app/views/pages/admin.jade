@@ -1,0 +1,120 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin-top:100px;")
+		layui-row
+			form.layui-form(method="post",action="/admin/movie/new",enctype="multipart/form-data")
+				input(type="hidden",name="product[_id]",value="#{product._id}")
+				input(type="hidden",name="product[store_id]",value="#{store_id}")
+				input(type="hidden",name="product[old_catetory]",value="#{product.catetory}")
+				input(type="hidden",name="product[old_brand]",value="#{product.product_brand}")
+				input(type="hidden",name="product[old_label]",value="#{product.product_label}")
+				//-.form-group
+					lable.col-sm-2.control-lable(for="inputCatetory") 电影分类
+					.col-sm-10
+						input#inputTitle.form-control(type="text",name="movie[catetory]",value="#{movie.catetory}")
+				//-.form-group
+					lable.col-sm-2.control-lable(for="inputCatetory") 豆瓣分类		
+					.col-sm-10
+						input#douban.form-control(type="text")
+				.layui-form-item#categoryMenu
+					lable.layui-form-label(for="inputCatetory") 商品分类:
+					.layui-inline
+						select#cate(name="category",lay-filter="cate",lay-verify="required")
+							option(value="") 选择一级分类
+							each cat in catetories
+								if product.catetory
+									option(value="#{cat._id}" selected=cat._id.toString()==parentcate_id.toString()) #{cat.name}
+								else
+									option(value="#{cat._id}") #{cat.name}
+					if product.catetory
+						.layui-inline
+							select#childcate_admin(name="product[childcate]",required="",lay-verify="required")
+								option(value="") 选择二级分类
+								each item in data
+									option(value="#{item._id}",selected=item._id.toString()==product.catetory.toString()) #{item.name}							
+					//-.layui-inline
+						select#childcate_admin(name="category")
+							option(value="") 选择二级分类
+							
+								
+					//- .layui-input-block
+					//- 	each cat in catetories
+					//- 		if product.catetory						
+					//- 			input(type="radio", name="product[catetory]", value="#{cat._id}",lay-verify="required",title="#{cat.name}",checked=cat._id.toString()==product.catetory.toString()) 
+					//- 		else							
+					//- 			input(type="radio", name="product[catetory]", value=cat._id,title="#{cat.name}")
+				.layui-form-item
+					lable.layui-form-label(for="inputTitle") 商品标题:
+					.layui-input-block
+						input#inputTitle.layui-input(type="text",required="",lay-verify="required",autocomplete="off",placeholder="请输入标题",name="product[product_title]",value="#{product.product_title}")
+				.layui-form-item
+					lable.layui-form-label(for="inputUnit") 商品单位:
+					.layui-input-block
+						input#inputUnit.layui-input(type="text",required="",lay-verify="required",autocomplete="off",placeholder="请输入商品单位",name="product[product_unit]",value="#{product.product_unit}")
+				.layui-form-item
+					lable.layui-form-label(for="inputPrice") 商品价格:
+					.layui-input-block
+						input#inputPrice.layui-input(type="text",required="",lay-verify="required",autocomplete="off",placeholder="请输入商品价格",name="product[product_price]",value="#{product.product_price}")
+				.layui-form-item
+					lable.layui-form-label(for="inputStock") 商品库存:
+					.layui-input-block
+						input#inputStock.layui-input(type="text",required="",lay-verify="required",autocomplete="off",placeholder="请输入商品库存",name="product[product_stock]",value="#{product.product_stock}")
+				//-.layui-form-item
+					lable.layui-form-label(for="inputPoster") 商品主图:
+					.layui-input-block
+						input#inputPoster.layui-input(type="hidden",autocomplete="off",name="product[product_poster]",value="#{product.product_poster}")
+						if product.product_poster
+							img#preview(src="#{product.product_poster}",width="100")
+						else
+							img#preview(src="/images/moren.png",width="100")
+				//-.layui-form-item
+					lable.layui-form-label(for="uploadPoster") 主图上传:
+					.layui-input-block
+						input#uploadPoster.layui-input(type="file",name="uploadPoster")
+				//-.layui-form-item
+					.layui-input-block
+						button#uploadbtn.layui-btn(type="button") 上传图片
+				//-.layui-upload
+					button.layui-btn#upload_btn(type="button") 上传图片
+					.layui-upload-list
+						img.layui-upload-img#demo1
+						p#demoText
+				.layui-form-item
+					lable.layui-form-label(for="inputCatetory") 商品品牌:
+					.layui-input-block
+						each brand in brands
+							if product.product_brand
+								lable.radio-inline
+									input(type="radio", name="product[product_brand]",required="required",lay-verify="required", value="#{brand._id}",title="#{brand.name} ", checked=brand._id.toString()==product.product_brand.toString()) 
+							else
+								lable.radio-inline
+									input(type="radio", name="product[product_brand]", required="required",value=brand._id,title="#{brand.name}")
+				.layui-form-item
+					lable.layui-form-label(for="inputContent") 商品详情:
+					.layui-input-block
+						input#inputContent.layui-input(type="text",required="required",lay-verify="required",name="product[product_content]",value="#{product.product_content}")
+				.layui-form-item
+					lable.layui-form-label(for="inputFreight") 商品运费:
+					.layui-input-block
+						input#inputFreight.layui-input(type="text",required="required",name="product[product_freight]",lay-verify="required",value="#{product.product_freight}")
+				.layui-form-item
+					lable.layui-form-label(for="inputCatetory") 商品标签
+					.layui-input-block
+						each label in labels
+							if product.product_label
+								lable.radio-inline
+									input(type="radio",required="required",lay-verify="required", name="product[product_label]", value="#{label._id}", title="#{label.name}",checked=label._id.toString()==product.product_label.toString())
+							else
+								lable.radio-inline
+									input(type="radio",required="required", name="product[product_label]",title="#{label.name}",value=label._id)
+				//-.layui-form-item
+					.layui-input-block
+						button#demotest1.layui-btn(type="button") 上传图片1111
+							i(class="layui-icon")&#xe67c;				
+				.layui-form-item
+					.layui-input-block
+						button.layui-btn(type="submit",lay-filter="formDemo") 下一步(上传详情图)
+						button.layui-btn.layui-btn-primary(type="reset") 重置
+	script(src="/js/admin.js")
+	

@@ -1,0 +1,25 @@
+{
+  "name": "imooc",
+  "description": "The first Node.js Web of potato",
+  "main": "index.js",
+  "authors": [
+    "potato"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "imooc"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

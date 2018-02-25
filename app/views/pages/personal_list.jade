@@ -1,0 +1,39 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin-top:100px; margin-left:20px; margin:80px 20px 0px 20px;")
+		table.layui-table
+			thead
+				tr
+					th 标题
+					th 价格
+					th 库存
+					th 分类
+					th 品牌
+					th 标签
+					th 发布时间
+					th PV
+					th 查看
+					th 更新
+					th 删除
+				tbody
+					each item in products
+						tr(class="item-id-#{item._id}")
+							td #{item.product_title}
+							td #{item.product_price}.00元
+							td #{item.product_stock}#{item.product_unit}
+							td #{item.cname}
+							td #{item.bname}
+							td #{item.lname}
+							td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+							td #{item.pv}
+							td: a.layui-btn(target="_blank",href="/movie/#{item._id}") 查看
+							td: a.layui-btn.layui-btn-danger(target="_blank",href="/admin/movie/update/#{item._id}") 修改
+							td 
+								button.layui-btn.layui-btn-danger.del(type="button",date-id="#{item._id}") 删除
+	br
+	br
+	br
+	script(src="/js/admin.js")
+	script.
+		$('dd:contains(我的商品)').addClass('layui-this');

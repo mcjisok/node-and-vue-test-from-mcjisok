@@ -1,0 +1,82 @@
+meta(name="viewport",content="user-scalable=no")
+script(src="/js/sign.js")
+
+.container
+	.row
+		.page-header.clearfix
+			h1 #{title}
+			.col-md-4
+				small 土豆电商平台
+			.col-md-8
+				form(method='GET',action='/results')
+					.input-group.col-sm-4.pull-right
+						input.form-contorl(type='text',name='q')
+						span.input-group-btn
+							button.btn.btn-default(type='submit') 搜索
+	.navbar.navbar-default
+		.container-fluid
+			.navbar-header
+				a.navbar-brand(href="/") 首页
+			div
+				ul.nav.navbar-nav
+					li
+						a(href="/admin/userlist") 用户列表
+					li
+						a(href="/admin/movie/new") 新增商品
+					li
+						a(href="/admin/movie/list") 商品列表
+					li
+						a(href="/admin/brand/new") 新增品牌
+					li
+						a(href="/admin/brand/list") 品牌列表
+					li
+						a(href="/admin/label/new") 新增标签
+					li
+						a(href="/admin/label/list") 标签列表
+					li
+						a(href="/ceshi") 测试
+.navbar.navbar-default.navbar-fixed-bottom
+	.container
+		.navbar-header
+			a.navbar-brand(href="/") 土豆电商平台
+		if user
+			p.navbar-text.navbar-right
+				span 欢迎您，#{user.name}
+				span &nbsp;|&nbsp;
+				a.narbar-link(href="/admin/movie/personal_list") 我的商品中心&nbsp;|&nbsp;
+				a.narbar-link(href="/user/logout") 登出
+		else
+			p.navbar-text.navbar-right
+				a.narbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册
+				span &nbsp;|&nbsp;
+				a.narbar-link(href="#",data-toggle="modal",data-target="#signinModal") 登录
+#signupModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST",action="/user/singup",id="signup")
+				.modal-header 注册
+				.modal-body
+					.form-group
+						label(for="signupName") 用户名
+						input#signupName.form-control(name="username",type="text")
+					.form-group
+						label(for="signupPassword") 密码
+						input#signupPassword.form-control(name="password",type="password")
+				.modal-footer
+					button.btn.btn-default(type="button",data-dismiss="modal") 关闭
+					button.btn.btn-success(type="submit") 提交
+#signinModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST",action="/user/singin",id="signin")
+				.modal-header 登录
+				.modal-body
+					.form-group
+						label(for="signinName") 用户名
+						input#signinName.form-control(name="username",type="text")
+					.form-group
+						label(for="signinPassword") 密码
+						input#signinPassword.form-control(name="password",type="password")
+				.modal-footer
+					button.btn.btn-default(type="button",data-dismiss="modal") 关闭
+					button.btn.btn-success(type="submit") 登录

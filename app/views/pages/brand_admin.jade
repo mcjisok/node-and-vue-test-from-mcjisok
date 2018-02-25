@@ -1,0 +1,16 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin:80px 20px 0px 20px;width:50%")
+		layui-row
+			form.layui-form.layui-form-pane(method="post",action="/admin/brand")
+				//-input(type="hidden",name="movie[_id]",value="#{movie._id}")
+				.layui-form-item(pane="")
+					lable.layui-form-label(for="inputBrand") 商品品牌
+					.layui-input-block
+						input#inputBrand.layui-input(type="text",name="brand[name]",required="required",lay-verify="required",value=brand.name)
+				.layui-form-item
+					.layui-input-block
+						button.btn.layui-btn(type="submit") 录入
+	script.
+		$('dd:contains(品牌管理)').addClass('layui-this');

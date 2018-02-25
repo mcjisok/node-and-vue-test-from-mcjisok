@@ -1,0 +1,29 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin-top:100px; margin-left:20px; margin:80px 20px 0px 20px;")
+		table.layui-table
+			thead
+				tr
+					th 用户名称
+					th 用户权限
+					th 注册时间
+					th 操作
+				tbody
+					each item in users
+						tr(class="item-id-#{item._id}")
+							td #{item.name}
+							td #{item.role}
+							td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+							td 
+								button.layui-btn.layui-btn-danger.del_user(type="submit",date-id="#{item._id}") 删除
+	//-#delUserModal.modal.fade
+		.modal-dialog.modal-sm
+			.modal-content
+				form
+					.modal-header 是否删除用户
+					.modal-body
+						button.btn.btn-default(type="button",data-dismiss="modal") 取消
+						button.btn.btn-danger.delUserbtn(type="submit") 删除						
+					
+	script(src="/js/admin.js")

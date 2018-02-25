@@ -1,0 +1,12 @@
+#sign{
+	position: absolute;
+	width: 500px;
+	height: auto;
+	left:45%;
+	top:40%;
+	margin-left: -200px;
+	margin-top: -100px;
+	padding:50px 30px 30px 30px;
+	border:1px solid #eee;
+	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}

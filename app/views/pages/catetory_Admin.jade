@@ -1,0 +1,59 @@
+extends ../backstage_layou
+
+block content
+	.layui-body(style="margin:80px 20px 0px 20px;width:50%")
+		layui-row
+			form.layui-form#catemenu(method="post",enctype="multipart/form-data",action="/admin/catetory")
+				//-input(type="hidden",name="movie[_id]",value="#{movie._id}")
+				//- .form-group
+				//- 	lable.col-sm-2.control-lable(for="inputCatetory") 商品分类
+				//- 	.col-sm-10
+				//- 		input#inputCatetory.form-control(type="text",name="catetory[name]",value=catetory.name)				
+				//- .form-group
+				//- 	.col-sm-offset-2.col-sm-10
+				//- 	button.btn.btn-default(type="submit") 保存
+				.layui-form-item
+					lable.layui-form-label 商品分类
+				.layui-form-item.Cate(pane)
+					lable.layui-form-label(for="inputCatetory") 一级分类
+					if catetory
+						.layui-input-block
+							.layui-btn.layui-btn-disabled #{catetory.name}
+							input(type="hidden",value="#{catetory.name}",name="catetory[name]")							
+							input(type="hidden",value="#{catetory._id}",name="cateID")
+							input#cateban(type="hidden",value="#{catetory.banner}",name="catetory[banner]")
+					else
+						.layui-input-block
+							input#inputCatetory.layui-input(type="text",name="catetory[name]",required="required",lay-verify="required",value="")
+							input#cateban.layui-input(type="hidden",name="catetory[banner]",required="required",lay-verify="required",value="")
+							
+				//-.layui-form-item.chilaCate(pane)
+					lable.layui-form-label(for="inputChildCatetory") 二级分类
+					.layui-input-block
+				input#inputChildCatetory.layui-input(type="hidden",required="required",lay-verify="required",name="childcate[name]",value="ceshi")
+				if childcates
+					each item in childcates
+						.layui-form-item
+							lable.layui-form-label(for="inputChildCatetory") 二级分类
+							.layui-input-block
+								.layui-btn.layui-btn-primary #{item.name}
+								a.layui-btn.layui-btn-danger.delChildcate(data-id="#{item._id}")
+									|<i class="layui-icon">&#xe640;</i>删除
+								//-input#inputChildCatetory.layui-input(type="text",required="required",lay-verify="required",name="childcates")
+				
+				.layui-upload#cateup
+					button.layui-btn#uploadPoster(type="button") 上传banner图
+					.layui-upload-list
+						if catetory
+							img.layui-upload-img#catebanner(style="width:100%",src="#{catetory.banner}")
+						else
+							img.layui-upload-img#catebanner(style="width:100%")				
+						p#demoText
+				.layui-form-item.catebtn
+					//-.layui-input-block
+					button.layui-btn.layui-btn.saveCate(type="submit") 保存
+					button.layui-btn.layui-btn-normal.addChildcate(type="button") 添加二级类目
+					button.layui-btn.layui-btn-danger(type="reset") 重置			
+	script(src="/js/admin.js")
+	script.
+		$('dd:contains(分类管理)').addClass('layui-this');

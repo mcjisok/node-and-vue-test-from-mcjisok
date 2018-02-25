@@ -1,0 +1,90 @@
+extends ../layout_bak
+
+block content
+  link(href="/css/style.css",rel="stylesheet")
+  //-link(href="/libs/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
+  script(src="/libs/jquery/dist/jquery.min.js")
+  //-script(src="/libs/bootstrap/dist/js/bootstrap.min.js")
+  script(src="/js/lubotu.js")
+  .detail
+    .row(style="margin-bottom:60px;")
+      .prd_msg
+        //-img(src="#{product.product_poster}", width="20%")
+        #magnifier
+          .small-box            
+            img(src="#{product.product_poster[0]}",alt="#",width="450",height="450")
+            span.hover
+          .thumbnail-box
+            a.btn.btn-prev(href="javascript:;")
+            a.btn.btn-next(href="javascript:;")
+            .list
+              ul.wrapper
+                each item in product.product_poster
+                  li.item(data-src="#{item}")
+                    img(src="#{item}",alt="#",width="60",height="60",data-url="#{item}")
+          .big-box
+            img(src="#{product.product_poster[0]}",width="800")
+        #prd_msg_right
+          .prd_cate
+            p 商品分类：#{product.cname}
+          .prd_Title
+            span [#{product.lname}]
+            p #{product.product_title}
+          .prd_sp
+            p 商品卖点：#{product.product_content}
+          .prd_price
+            p 售价
+            span ￥ #{product.product_price}.00
+            del ￥ #{product.product_price}.00
+      .clearbox
+      .prd_warp
+        .warp_left(style="width:190px;")
+        .warp_right(style="width:790px;")
+          each item in product.product_detailimg
+            img(src="#{item}",width="780px;")
+        
+      //-.col-md-12
+        .panel.panel-default
+          .panel-heading
+            h3 评论区
+          .panel-body
+            ul.media-list
+              each item in comments
+                li.media
+                  .pull-left
+                    a.comment(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}")
+                      img.media-object.img-circle(src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+", style="width: 64px; height: 64px;")
+                  .media-body
+                    h4.media-heading 用户ID：#{item.from.name}
+                    p 评论内容：#{item.content}
+                    //-p #{item.meta.createAt}
+                    if item.reply && item.reply.length > 0
+                      each reply in item.reply
+                        .media
+                          .pull-left
+                            a.comment(href="#comments", data-cid="#{item._id}",data-tid="#{reply.from._id}")
+                              img.media-object.img-circle(src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+", style="width: 64px; height: 64px;")
+                          .media-body
+                            h4.media-heading
+                              | #{reply.from.name}
+                              span.text-info &nbsp;回复&nbsp;
+                              | #{reply.to.name}
+                            p 回复内容：#{reply.content}
+                  hr
+            #comments
+              form#commentForm(method="POST",action="/user/comment")
+                .form-group
+                  textarea.form-control(name="comment[content]",row="3")
+                input(type="hidden",name="comment[product]",value="#{product._id}")
+                if (user)
+                  input(type="hidden",name="comment[from]",value="#{user._id}")
+                  button.btn.btn-primary(type="submit") 提交评论
+                else
+                  a.navbar-link(href="#", data-toggle="modal", data-target="#signinModal") 登录后评论
+  script(src="/js/detail.js")
+  script(src="/js/magnifier.js")
+  //- <script>
+  //-   $(function(){
+  //-     $('#magnifier').magnifier();
+  //-   });
+  //- </script>

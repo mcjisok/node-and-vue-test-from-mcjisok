@@ -1,0 +1,57 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0,maximum-scale=1, minimum-scale=1, user-scalable=no")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/m_css/base.css")
+        link(rel="stylesheet", href="/m_css/category.css")
+        title 移动端分类页
+    body
+        .jd_category
+            header.jd_topBar
+                a.icon_back(href="#")
+                form(action="#")
+                    input(type="search",placeholder="肥羊肉")
+                a.icon_menu(href="#")
+            .jd_main
+                //- 左侧商品分类
+                .cate_left
+                    ul
+                        each item in catetories
+                            li(data_id="#{item.id}")                                
+                                a(href="javascript:;") #{item.name}
+                //- 右侧商品类容和banner
+                each item in catetories
+                    .cate_right
+                        .cate_right_box
+                            a.banner(href="#")
+                                img(src="#{item.banner}", alt="")
+                            each j in item.css                                           
+                                .hot-category
+                                    h3 #{j.name}
+                                    ul.clearfix
+                                        each product in j.products
+                                            li
+                                                a(href="#")
+                                                    img(src="#{product.product_poster}", alt="")
+                                                    //- | #{product.product_title}    
+        foot.m_foot
+            ul
+                li 
+                    a(href="/m")
+                        img(src="/images/icon4.png", alt="")
+                li 
+                    a(href="/m/category")
+                        img(src="/images/icon2.png", alt="")
+                li 
+                    a(href="#")
+                        img(src="/images/icon3.png", alt="")
+                li 
+                    a(href="#")
+                        img(src="/images/icon1.png", alt="")     
+        script(src="/js/m_js/iscroll.js")
+        script(src="/js/m_js/zepto.min.js")
+        script(src="/js/m_js/category.js")
+        script(src="/js/m_js/common.js")
+        script(src="/js/m_js/touch.js")
+            
