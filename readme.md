@@ -29,14 +29,14 @@
 
 
 前端：
-	管理后台前端：
-	jade模板引擎
-	layui贤心大神的经典ui框架
-	jquery
+管理后台前端：
+jade模板引擎
+layui贤心大神的经典ui框架
+jquery
 	
-	移动端前端：
-	Vue全家桶 vue-cli、vue-router、vuex、vue-resource（后期修改为axios）
-	sass
-	mint-ui
+移动端前端：
+Vue全家桶 vue-cli、vue-router、vuex、vue-resource（后期修改为axios）
+sass
+mint-ui
 
 注：该项目为学习项目，使用的技术栈有点杂，主要为学习各项前端技术使用
