@@ -39,8 +39,8 @@ jquery
 移动端前端：  
 Vue全家桶 vue-cli、vue-router、vuex、vue-resource（后期修改为axios）  
 sass  
-mint-ui  
- 
+mint-ui    
+  
 后台管理首页：localhost:3000  
 移动端首页：localhost:3000/m  
    
