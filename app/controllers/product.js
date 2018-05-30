@@ -21,9 +21,6 @@ exports.detail = function(req,res){
 		}
 	})
 	Product.findById(id,function(err,product){
-		//var title = product.product_title
-		//console.log('111111111111111111111111111111111111111')
-		//console.log(title)
 		var cat,lab,brand
 		console.log('------------------------------')
 		Catetory

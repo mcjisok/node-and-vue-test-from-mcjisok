@@ -4,7 +4,7 @@ var ObjectId = Schema.Types.ObjectId
 
 
 var CommentSchema = new Schema({
-	movie:{type:ObjectId, ref:'Movie'},
+	product:{type:ObjectId, ref:'Movie'},
 	from:{type:ObjectId, ref:'User'},
 	reply:[{
 		from:{type:ObjectId, ref:'User'},

@@ -4,6 +4,7 @@ var Comment = require('../models/comment') //获取模型
 exports.save = function(req,res){
 	//console.log(req)
 	//res.redirect('/movie/'+_movie.id)
+	console.log(req.body)
 	var _comment = req.body.comment
 	var productId = _comment.product
 	//console.log(req.body.movie)

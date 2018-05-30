@@ -28,7 +28,7 @@ module.exports = function(grunt){
 					debug:true,
 					delayTime:1,
 					env:{
-						PORT:3000
+						PORT:4000
 					},
 					cwd:__dirname
 				}

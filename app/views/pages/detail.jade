@@ -37,13 +37,13 @@ block content
             span ￥ #{product.product_price}.00
             del ￥ #{product.product_price}.00
       .clearbox
-      .prd_warp
+      //-.prd_warp
         .warp_left(style="width:190px;")
         .warp_right(style="width:790px;")
           each item in product.product_detailimg
             img(src="#{item}",width="780px;")
         
-      //-.col-md-12
+      .col-md-12
         .panel.panel-default
           .panel-heading
             h3 评论区

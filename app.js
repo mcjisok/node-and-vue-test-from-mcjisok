@@ -12,7 +12,7 @@ var mongoStore = require('connect-mongo')(session)//引用connect-mongo做持久
 
 var cors = require('cors')
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 4000
 var app = express()
 
 var bodyParser = require('body-parser')
