@@ -39,6 +39,10 @@ jquery
 移动端前端：  
 Vue全家桶 vue-cli、vue-router、vuex、vue-resource（后期修改为axios）  
 sass  
-mint-ui  
-
-注：该项目为学习项目，使用的技术栈有点杂，主要为学习各项前端技术使用
+mint-ui    
+  
+后台管理首页：localhost:3000  
+移动端首页：localhost:3000/m  
+   
+  
+ 注：该项目为学习项目，使用的技术栈有点杂，主要为学习各项前端技术使用
